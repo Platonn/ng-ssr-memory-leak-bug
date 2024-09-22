@@ -7,7 +7,8 @@
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
-    "serve:ssr:ng-ssr-memory-leak-bug": "node dist/ng-ssr-memory-leak-bug/server/server.mjs"
+    "serve:ssr:ng-ssr-memory-leak-bug": "node dist/ng-ssr-memory-leak-bug/server/server.mjs",
+    "dev:ssr": "node --watch dist/ng-ssr-memory-leak-bug/server/server.mjs"
   },
   "private": true,
   "dependencies": {
