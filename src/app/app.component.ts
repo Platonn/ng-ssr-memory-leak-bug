@@ -8,4 +8,14 @@ import { RouterOutlet } from '@angular/router';
   templateUrl: './app.component.html',
   styleUrl: './app.component.css',
 })
-export class AppComponent {}
+export class AppComponent {
+  /**
+   * Simulate 3s long task to artificially delay the app becoming stable
+   * and so to delay finishing the SSR completion.
+   */
+  ngOnInit() {
+    setTimeout(() => {
+      console.log('3s setTimeout passed in AppComponent. Now app is stable.');
+    }, 3_000);
+  }
+}

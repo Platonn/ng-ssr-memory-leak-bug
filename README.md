@@ -1,27 +1,30 @@
-# NgSsrMemoryLeakBug
+Bug: Angular doesn't call ngOnDestroy on services, when some `APP_INITIALIZER` rejects a result Promise.
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 18.2.5.
+Usage:
 
-## Development server
+1. in one terminal run `npm run watch`
+2. in another terminal run `npm run dev:ssr`
+3. in the third terminal run `curl http://localhost:4000/?success` and verify the second terminal prints:
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+```
+Angular is running in development mode.
+MyService pending interval: 1s
+MyService pending interval: 2s
+MyService pending interval: 3s
+3s setTimeout passed in AppComponent. Now app is stable.
+```
 
-## Code scaffolding
+4. in the third terminal run `curl http://localhost:4000/?fail` and verify the second terminal prints:
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+```
+ERROR Error: SPIKE ERROR
+  (...stacktrace here...)
+MyService pending interval: 1s
+MyService pending interval: 2s
+MyService pending interval: 3s
+MyService pending interval: 4s
+MyService pending interval: 5s
+(...increasing forever...)
+```
 
-## Build
-
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
-
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+...which proves a memory leak happened.
