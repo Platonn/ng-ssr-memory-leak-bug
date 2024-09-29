@@ -4,7 +4,7 @@ Usage:
 
 1. in one terminal run `npm run watch`
 2. in another terminal run `npm run dev:ssr`
-3. in the third terminal run `curl http://localhost:4000/?success` and verify the second terminal prints:
+3. [HAPPY PATH - no memory leak] in the third terminal run `curl http://localhost:4000/?success` and verify the second terminal prints:
 
 ```
 Angular is running in development mode.
@@ -14,7 +14,7 @@ MyService pending interval: 3s
 3s setTimeout passed in AppComponent. Now app is stable.
 ```
 
-4. in the third terminal run `curl http://localhost:4000/?fail` and verify the second terminal prints:
+4. [UNHAPPY PATH - memory leak] in the third terminal run `curl http://localhost:4000/?fail` and verify the second terminal prints:
 
 ```
 ERROR Error: SPIKE ERROR
