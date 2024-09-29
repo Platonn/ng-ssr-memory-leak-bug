@@ -14,6 +14,7 @@ MyService pending interval: 1s
 MyService pending interval: 2s
 MyService pending interval: 3s
 3s setTimeout passed in AppComponent. Now app is stable.
+MyService.ngOnDestroy() is called. Interval is stopped
 ```
 
 4. [UNHAPPY PATH - memory leak] in the third terminal run `curl http://localhost:4000/?fail` and verify the second terminal prints:

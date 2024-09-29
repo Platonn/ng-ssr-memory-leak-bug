@@ -26,5 +26,6 @@ export class MyService {
 
   ngOnDestroy() {
     this.sub?.unsubscribe();
+    console.log('MyService.ngOnDestroy() is called. Interval is stopped.');
   }
 }
