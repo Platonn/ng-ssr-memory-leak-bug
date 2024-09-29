@@ -1,6 +1,8 @@
+### Problem
+
 Bug: Angular doesn't call ngOnDestroy on services, when some `APP_INITIALIZER` rejects a result Promise.
 
-Usage:
+### Reproduction steps:
 
 1. in one terminal run `npm run watch`
 2. in another terminal run `npm run dev:ssr`
@@ -26,5 +28,3 @@ MyService pending interval: 4s
 MyService pending interval: 5s
 (...increasing forever...)
 ```
-
-...which proves a memory leak happened.
